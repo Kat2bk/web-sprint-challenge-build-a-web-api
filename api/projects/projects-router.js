@@ -25,6 +25,15 @@ router.get('/:id', validateProjectId, async (req, res, next) => {
 
 // - Returns a project with the given `id` as the body of the response.
 // - If there is no project with the given `id` it responds with a status code 404.
+
+router.post('/', validateProject, async (req, res, next) => {
+    try {
+        const newProject = await Projects.insert({name: req.body.name, description: req.body.description, completed: req.body.completed})
+        res.status(201).json(newProject)
+    } catch (error) {
+        next(error)
+    }
+})
 // - [ ] `[POST] /api/projects`
 // - Returns the newly created project as the body of the response.
 // - If the request body is missing any of the required fields it responds with a status code 400.

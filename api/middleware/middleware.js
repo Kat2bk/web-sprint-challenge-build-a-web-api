@@ -17,7 +17,7 @@ async function validateProjectId(req, res, next) {
 
 async function validateProject(req, res, next) {
     try {
-        if (!req.body.name.trim() || !req.body.description.trim()) {
+        if (!req.body.name.trim() || !req.body.description.trim()) { //completed isn't required, so didn't involve it
             res.status(400).json({message: "please fill out all required fields"})
         } else {
             next()
